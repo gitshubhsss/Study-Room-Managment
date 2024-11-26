@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/admin/<%= adId %>/students/<%= student._id%>?_method=PUT" method="post">
+
+        <input type="text" name="student[name]" id="" value="<%= student.name %>">
+        <br><br>
+        <input type="email" name="student[email]" id="" value="<%= student.email %>">
+        <br><br>
+        <input type="number" name="student[mobile]" id="" value="<%= student.mobile%>">
+        <br><br>
+        <input type="number" name="student[seat_no]" id="" value="<%= student.seat_no %>">
+        <br><br>
+
+        <button>Update info</button>
+    </form>
+</body>
+</html>

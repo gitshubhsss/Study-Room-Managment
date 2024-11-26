@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>welcome <%= admin.username %>
+    </h1>
+    <p> email : <%= admin.email %>
+    </p>
+    <ul>
+        <li><a href="/students">see admissions</a></li>
+        <li><a href="/logout">logout</a></li>
+        <li><a href="/adminprofile">Admin profile</a></li>
+    </ul>
+    <h3>reserve seats : <%= reserveSeats.length %></h3>
+    <% for (const seat of reserveSeats) {%>
+        <a href="/students/<%= seat %>">
+            <%= seat %>
+            <br>
+        </a>
+        <% } %>
+            <h3>awaible seats : <%= availableSeats.length %> </h3>
+            <% for (const seat of availableSeats) {%>
+                <a href="/newstudent/<%= seat %>">
+                    <%= seat %>
+                    <br>
+                </a>
+                <% } %>
+                    <h2>Total seats : <%= totalSeats.length %>
+                    </h2>
+
+
+</body>
+
+</html>

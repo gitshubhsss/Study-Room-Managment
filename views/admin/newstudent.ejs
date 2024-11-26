@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/newstudent" method="post">
+        <input type="text" name="student[name]" id="" placeholder="Enter the student name">
+        <br><br>
+        <input type="email" name="student[email]" id="" placeholder="Enter the email">
+        <br><br>
+        <input type="number" name="student[mobile]" id="" placeholder="Enter the mobile number">
+        <br><br>
+        <input type="date" name="student[startDate]" id="" placeholder="Enter the admissionDate">
+        <br><br>
+        <input type="date" name="student[endDate]" id="" placeholder="Enter the end date">
+        <br><br>
+        <input type="text" name="student[preparation]" id="" placeholder="Enter the occupation">
+        <br><br>
+        <input type="number" name="student[seat_no]" id="" value="<%= seat %>" readonly>
+        <br><br>
+        <button>Add student</button>
+    </form>
+</body>
+
+</html>

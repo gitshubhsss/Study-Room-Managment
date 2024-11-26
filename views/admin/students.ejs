@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>All students</h1>
+    <a href="/admin">back</a>
+    <br><br>
+
+    <% if (length>0) { %>
+        <table border="2">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Admission date</th>
+                <th>End date</th>
+                <th>Aspirant</th>
+                <th>Seat no</th>
+                <th>Delete</th>
+            </tr>
+            <% for (const student of admin.students) { %>
+                <tr>
+                    <td>
+                        <%= student.name %>
+                    </td>
+                    <td>
+                        <%= student.email %>
+                    </td>
+                    <td>
+                        <%= student.mobile %>
+                    </td>
+                    <td>
+                        <%= student.startDate %>
+                    </td>
+                    <td>
+                        <%= student.endDate %>
+                    </td>
+                    <td>
+                        <%= student.preparation %>
+                    </td>
+                    <td>
+                        <%= student.seat_no %>
+                    </td>
+                    <td>
+                        <form action="/admin/<%= admin._id %>/students/<%= student._id %>?_method=DELETE" method="post">
+                            <button>delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+        </table>
+        <% } else { %>
+            <div>No admisisions found </div>
+            <% }%>
+
+</body>
+
+</html>

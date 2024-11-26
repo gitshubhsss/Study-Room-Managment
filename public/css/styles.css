@@ -1,0 +1,111 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+/* usernav */
+.userNav {
+    background-color: rgb(255, 255, 255) !important;
+}
+
+body {
+    font-family: "Poppins", sans-serif !important;
+}
+
+.nav-logo {
+    color: rgba(72, 86, 209, 0.888);
+    font-size: 3rem;
+}
+
+.navbar-nav a {
+    font-weight: 500 !important;
+}
+
+.navbar-nav a:hover {
+    color: rgba(72, 86, 209, 0.888);
+}
+
+.index-image {
+    border-top-left-radius: 50% !important;
+    border-top-right-radius: 50% !important;
+}
+
+.index-heading {
+    font-family: "Barlow", sans-serif !important;
+    font-weight: 700;
+    /* color: #6674CC !important; */
+}
+
+.button {
+    background-color: rgba(72, 86, 209, 0.888) !important;
+    border: none !important;
+    padding: 0.3rem 2rem;
+    font-family: "Inter", sans-serif !important;
+    font-weight: 600 !important;
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 5px !important;
+}
+
+.features-title {
+    font-weight: bold;
+    color: rgba(72, 86, 209, 0.888);
+}
+
+.features-divider {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.features-list .list-group-item {
+    font-size: 1rem;
+    color: #333;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    /* Ensure Flexbox layout */
+    align-items: center;
+    /* Align icon and text in the middle */
+}
+
+.features-list .list-group-item i {
+    margin-right: 1rem;
+    /* Add spacing between icon and text */
+    font-size: 1.5rem;
+    /* Optional: Increase icon size */
+    color: #007bff;
+    /* Optional: Set icon color */
+}
+
+
+/* userfooter */
+.f-info {
+    height: 7rem;
+
+    text-align: center !important;
+}
+
+.f-info-links a {
+    text-decoration: none !important;
+    color: #222222 !important;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline !important;
+}
+
+.f-info-socials i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.f-info-socials,
+.f-info-links,
+.f-info-brand {
+    width: 100% !important;
+}

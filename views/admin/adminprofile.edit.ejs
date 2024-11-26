@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/adminprofile/<%= adminData._id%>?_method=PUT" method="post" novalidate>
+        <h1>Edit admin profile</h1>
+        <input type="email" name="admin[email]" id="" value="<%= adminData.email %>" required>
+        <br>  <br>
+        <input type="number" name="admin[seats]" id="" value="<%= adminData.seats %>" required>
+        <br>  <br>
+        <input type="number" name="admin[fees]" id="" value="<%= adminData.fees %>" required>
+        <br> <br>
+        <button>Update</button>
+    </form>
+</body>
+</html>

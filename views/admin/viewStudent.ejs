@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>hii</h1>
+    <% for (const stud of student) {%>
+        <p>name : <%= stud.name %>
+        </p>
+        <p>email : <%= stud.email %>
+        </p>
+        <p>mobile : <%= stud.mobile %>
+        </p>
+        <p>admission date : <%= stud.startDate %>
+        </p>
+        <p>endDate : <%= stud.endDate %>
+        </p>
+        <p>preparation : <%= stud.preparation %>
+        </p>
+        <p>seat no : <%= stud.seat_no %>
+        </p>
+
+      <div>
+        <form action="/admin/<%= adId %>/students/<%= stud._id %>?_method=DELETE" method="post">
+            <button>delete</button>
+        </form>
+       
+        <form action="/admin/<%= adId %>/students/<%= stud._id %>/edit" method="get">
+            <button>edit student</button>
+        </form>
+      </div>
+        <% } %>
+</body>
+
+</html>
