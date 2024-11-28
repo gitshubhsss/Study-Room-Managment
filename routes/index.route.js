@@ -45,8 +45,8 @@ route.post(
   saveRedirectUrl,
   passport.authenticate("local", {
     failureRedirect: "/login",
-    successRedirect:"/admin"
-  }), 
+    successRedirect: "/admin"
+  }),
   async (req, res) => {
     res.redirect(res.locals.redirectUrl);
   }
@@ -57,8 +57,15 @@ route.get("/logout", isLoggedIn, async (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/");
+    req.session.destroy((sessionErr) => {
+      if (sessionErr) {
+        return next(sessionErr);
+      }
+      res.clearCookie("connect.sid");
+      res.redirect("/");
+    });
   });
 });
+
 
 module.exports = route;

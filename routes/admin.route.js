@@ -4,6 +4,7 @@ const Admin = require("../models/admin.model");
 const Student = require("../models/student.model");
 const isLoggedIn = require("../Middlewares/isLoggedIn"); //to check whether is user is logged in or not
 const checkUnique = require("../Middlewares/checkUnique");
+const verifyPayment = require("../Middlewares/verifyPayment");
 
 route.get("/admin", isLoggedIn, async (req, res) => {
   let data = req.user;
@@ -33,7 +34,9 @@ route.get("/newstudent/:seat", isLoggedIn, async (req, res) => {
   res.render("admin/newstudent.ejs", { seat });
 });
 
-route.post("/newstudent", isLoggedIn, checkUnique, async (req, res, next) => {
+//here will be one middleware funtion which check the payment is successfull or not if not then show the 
+//approriate method
+route.post("/newstudent", isLoggedIn, checkUnique, verifyPayment, async (req, res, next) => {
   try {
     console.log("/newstudent has been called");
     let admin = req.user;
@@ -83,7 +86,7 @@ route.get("/students", isLoggedIn, async (req, res, next) => {
     admin.students.sort(
       (a, b) => new Date(b.startDate) - new Date(a.startDate)
     );
-    res.render("admin/students.ejs", { admin, length});
+    res.render("admin/students.ejs", { admin, length });
   } catch (error) {
     next(error);
   }
@@ -179,7 +182,7 @@ route.put("/adminprofile/:id", async (req, res, next) => {
   let { id } = req.params;
   let admin = await Admin.findById(id);
   await Admin.findByIdAndUpdate(id, { ...req.body.admin });
-  res.redirect("/adminprofile/edit");
+  res.redirect("/adminprofile");
 })
 
 //edit student

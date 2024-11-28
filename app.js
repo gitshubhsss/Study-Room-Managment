@@ -36,15 +36,21 @@ app.use(passport.session()); //Identifying the user using session
 passport.use(new localStratergy(Admin.authenticate()));
 passport.serializeUser(Admin.serializeUser()); //Serialize the (user) into the session
 passport.deserializeUser(Admin.deserializeUser()); //Desirialize the (user) from the session
+app.use((req, res, next) => {
+  res.set("Cache-Control", "no-store");
+  next();
+});
 
 
 //Routes
 const indexRoute = require("./routes/index.route");
 const adminRoute = require("./routes/admin.route");
+const paymentRoute=require("./routes/payment.route")
 
 
 app.use("/", indexRoute);
 app.use("/", adminRoute);
+app.use("/",paymentRoute);
 
 app.all("*", (req, res, next) => {
   next(Error("something wents wrong"));
