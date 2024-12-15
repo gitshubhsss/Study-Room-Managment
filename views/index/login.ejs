@@ -1,20 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <body>
+        <div class="container mt-3 mb-3">
+            <h1 class="text-center mb-4">Login</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form action="/login" method="post" class="p-4 border needs-validation rounded shadow-sm"
+                        novalidate>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username*</label>
+                            <input type="text" name="username" id="username" class="form-control"
+                                placeholder="Enter your username" required>
+                            <div class="invalid-feedback">
+                                Please enter your username.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password*</label>
+                            <input type="password" name="password" id="password" class="form-control"
+                                placeholder="Enter your password" required>
+                            <div class="invalid-feedback">
+                                Please enter your password.
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            (() => {
+                'use strict'
 
-<body>
-    <form action="/login" method="post">
-        <input type="text" name="username" id="" placeholder="username">
-        <br><br>
-        <input type="password" name="password" id="" placeholder="password">
-        <br><br>
-        <button>Login</button>
-    </form>
-</body>
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
 
-</html>
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+        </script>
+
+    </body>

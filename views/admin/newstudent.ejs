@@ -16,9 +16,9 @@
         <br><br>
         <input type="number" name="student[mobile]" placeholder="Enter the mobile number" required>
         <br><br>
-        <input type="date" name="student[startDate]" placeholder="Enter the admission date" required>
+        <input type="date" id="startDate" name="student[startDate]" placeholder="Enter the admission date" required>
         <br><br>
-        <input type="date" name="student[endDate]" placeholder="Enter the end date" required>
+        <input type="date" id="endDate" name="student[endDate]" placeholder="Enter the end date" required>
         <br><br>
         <input type="text" name="student[preparation]" placeholder="Enter the occupation" required>
         <br><br>
@@ -29,6 +29,8 @@
         <input type="hidden" id="razorpay_order_id" name="razorpay_order_id">
         <input type="hidden" id="razorpay_signature" name="razorpay_signature">
         <button type="button" id="payButton">Proceed to Payment</button>
+
+        <button>add stududent</button>
     </form>
 
     <script>
@@ -72,6 +74,25 @@
                     console.log('Error creating Razorpay order:', error);
                     alert('Failed to initiate payment. Please try again.');
                 });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const startDateInput = document.getElementById("startDate");
+            const endDateInput = document.getElementById("endDate");
+
+            // Set the minimum start date to today
+            const today = new Date().toISOString().split("T")[0];
+            startDateInput.min = today;
+
+            // Update the end date based on the start date
+            startDateInput.addEventListener("change", () => {
+                const selectedDate = new Date(startDateInput.value);
+                if (!isNaN(selectedDate)) {
+                    const endDate = new Date(selectedDate);
+                    endDate.setMonth(endDate.getMonth() + 1); // Add one month
+                    endDateInput.value = endDate.toISOString().split("T")[0];
+                }
+            });
         });
     </script>
 </body>

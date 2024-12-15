@@ -31,7 +31,8 @@
 <body>
     <%- include("../includes/userNav.ejs") %>
         <div class="container">
-            <%- body %>
+            <%- include('../includes/flash') %>
+                <%- body %>
         </div>
         <%- include("../includes/userFoot.ejs") %>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

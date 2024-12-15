@@ -7,7 +7,6 @@
 </head>
 <body>
     <form action="/admin/<%= adId %>/students/<%= student._id%>?_method=PUT" method="post">
-
         <input type="text" name="student[name]" id="" value="<%= student.name %>">
         <br><br>
         <input type="email" name="student[email]" id="" value="<%= student.email %>">

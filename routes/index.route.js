@@ -4,6 +4,8 @@ const Admin = require("../models/admin.model");
 const passport = require("passport");
 const isLoggedIn = require("../Middlewares/isLoggedIn"); //whether the user exists in the current session or not
 const saveRedirectUrl = require("../Middlewares/saveRedirectUrl");
+const validateSignUp = require("../Middlewares/signUpMidlleware");
+const validateLogin = require("../Middlewares/LoginMiddleware");
 
 route.get("/", (req, res) => {
   res.render("index/index.ejs");
@@ -14,11 +16,15 @@ route.get("/aboutus", (req, res) => {
 route.get("/contactus", (req, res) => {
   res.render("index/contactus");
 });
+
+route.get("/projects", (req, res) => {
+  res.render("index/projects.ejs")
+})
 route.get("/signup", (req, res) => {
   res.render("index/signup");
 });
 
-route.post("/signup", async (req, res, next) => {
+route.post("/signup", validateSignUp, async (req, res, next) => {
   try {
     let { username, password, email, seats, fees } = req.body;
     let admin = new Admin({ username, email, seats, fees });
@@ -40,14 +46,17 @@ route.get("/login", (req, res) => {
   res.render("index/login");
 });
 
+
 route.post(
   "/login",
   saveRedirectUrl,
+  validateLogin,
   passport.authenticate("local", {
     failureRedirect: "/login",
-    successRedirect: "/admin"
+    successRedirect: "/admin",
   }),
   async (req, res) => {
+    req.flash("success", "welcome to the admin board");
     res.redirect(res.locals.redirectUrl);
   }
 );

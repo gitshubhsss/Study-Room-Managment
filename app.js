@@ -4,17 +4,18 @@ const app = express();
 
 const path = require("path");
 app.set("view engine", "ejs");
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/public/css")));
 app.use(express.static(path.join(__dirname, "/public/js")));
-app.use(express.static(path.join(__dirname,"/public/Images/")))
+app.use(express.static(path.join(__dirname, "/public/Images/")))
+const session = require("express-session");
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'))
 const engine = require("ejs-mate");
 app.engine("ejs", engine);
-const flash=require('connect-flash');
+const flash = require("connect-flash");
 //Models
-const Admin = require("./models/admin.model"); 
+const Admin = require("./models/admin.model");
 app.listen(8080, () => {
   console.log("app is listening on the port 8080");
 });
@@ -24,11 +25,12 @@ const sessionOpt = {
   saveUninitialized: true,
 };
 
-const session = require("express-session");
+
 app.use(session(sessionOpt));//For each new request the session will start
+app.use(flash())
 
 const passport = require("passport");
-const localStratergy = require("passport-local"); 
+const localStratergy = require("passport-local");
 
 app.use(passport.initialize()); //passport will be initialize for every request
 app.use(passport.session()); //Identifying the user using session
@@ -41,16 +43,22 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currentUser = req.user;
+  next(); //calling to the next non error handeling middleware
+});
 
 //Routes
 const indexRoute = require("./routes/index.route");
 const adminRoute = require("./routes/admin.route");
-const paymentRoute=require("./routes/payment.route")
+const paymentRoute = require("./routes/payment.route")
 
 
 app.use("/", indexRoute);
 app.use("/", adminRoute);
-app.use("/",paymentRoute);
+app.use("/", paymentRoute);
 
 app.all("*", (req, res, next) => {
   next(Error("something wents wrong"));

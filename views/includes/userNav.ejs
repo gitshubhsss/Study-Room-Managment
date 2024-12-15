@@ -7,17 +7,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="/admin/login">About us</a>
-                <a class="nav-link" href="/projects">Projects</a>
-                <a class="nav-link" href="/contact">Contact</a>
-                <a class="nav-link" href="/contact">Read Docs</a> 
-            
+                <% if (!currentUser) { %>
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/admin/login">About us</a>
+                    <!-- if the user is not login then will do show this part -->
+                    <a class="nav-link" href="/projects">Projects</a>
+                    <a class="nav-link" href="/contactus">Contact</a>
+                    <a class="nav-link" href="/contact">Read Docs</a>
+                    <% } %>
+                        <% if (currentUser) { %>
+                            <!-- //if the user is login then only he will be able to see the logout option -->
+                            <a class="nav-link" href="/adminprofile"><b>Profile</b></a>
+                            <a class="nav-link" href="/students"><b>See students</b></a>
+                            <% } %>
             </div>
 
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" aria-current="page" href="/signup">Signup</a>
-                <a class="nav-link" href="/login">Login</a>
+                <% if (!currentUser) { %>
+                    <!-- if the user is not login then will do show this part -->
+                    <a class="nav-link " aria-current="page" href="/signup"><b>SignUp</b></a>
+                    <a class="nav-link" href="/login"><b>login</b></a>
+                    <% } %>
+                        <% if (currentUser) { %>
+                            <!-- //if the user is login then only he will be able to see the logout option -->
+                            <a class="nav-link" href="/logout"><b>logout</b></a>
+                            <% } %>
             </div>
         </div>
     </div>
